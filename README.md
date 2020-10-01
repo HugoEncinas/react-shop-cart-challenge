@@ -58,12 +58,6 @@ The following data-testid/class attributes are required in the component for th
   
 _Note: Please note that the component has the above data-testid attributes for test cases and certain classes and ids for rendering purposes. It is advised not to change them._
 
-
-## Project Specifications
-
-**Read Only Files**
-- [src/App.test.js]
-
 **Commands**
 - run: 
 ```bash

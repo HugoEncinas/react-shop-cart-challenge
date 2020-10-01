@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="4" failures="0" time="28.704">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-10-01T14:28:05" time="23.047" tests="4">
+    <testcase classname=" Add item to cart" name=" Add item to cart" time="0.094">
+    </testcase>
+    <testcase classname=" Update quantity in cart" name=" Update quantity in cart" time="0.043">
+    </testcase>
+    <testcase classname=" Remove item from cart" name=" Remove item from cart" time="0.032">
+    </testcase>
+    <testcase classname=" Performs Series of Actions" name=" Performs Series of Actions" time="0.071">
+    </testcase>
+  </testsuite>
+</testsuites>
