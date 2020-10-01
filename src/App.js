@@ -26,30 +26,32 @@ class App extends Component {
         this.changeCart = this.changeCart.bind(this)
     }
 
-    changeCart(product, i, isRemove = false) {
-        console.log("addCart", product)
+    changeCart(index, isRemove = false) {
         let products = [...this.state.products];
         let cartItems = [...this.state.cart.items];
-        let newProduct = {...products[i]}
+        let newProduct = {...products[index]}
         if (!isRemove) {
             newProduct.cartQuantity = newProduct.cartQuantity+1;
             
         } else {
             newProduct.cartQuantity = newProduct.cartQuantity-1;
         }
-        let finditem = cartItems.find(item=>item.name === newProduct.name)
+        let finditem = cartItems.find(item=>item.item === newProduct.name)
         if (finditem) {
-            finditem.name = newProduct.name
             finditem.quantity = newProduct.cartQuantity
+            if (finditem.quantity === 0) {
+                cartItems = cartItems.filter((item) => {
+                    return item.item !== newProduct.name;
+                });
+            }
         } else {
             cartItems = [...cartItems, {
                 item: newProduct.name,
                 quantity: newProduct.cartQuantity
             }]
         }
-        products[i] = newProduct
-        this.setState({products})
-        this.setState({cart:{
+        products[index] = newProduct
+        this.setState({products, cart:{
             items: [...cartItems]
         }})
     }

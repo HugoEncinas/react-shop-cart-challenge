@@ -26,7 +26,7 @@ export default class ProductList extends Component {
                                 <div className="card-actions justify-content-center pa-4">
                                     {product.cartQuantity?
                                         <div className="layout-row justify-content-between align-items-center">
-                                        <button className="x-small icon-only outlined" onClick={() => changeCart(product, i, true)}
+                                        <button className="x-small icon-only outlined" onClick={() => changeCart(i, true)}
                                                 data-testid="btn-quantity-subtract">
                                             <i className="material-icons">remove</i>
                                         </button>
@@ -36,13 +36,13 @@ export default class ProductList extends Component {
                                             disabled
                                             className="cart-quantity" data-testid="cart-quantity"/>
 
-                                        <button className="x-small icon-only outlined" onClick={() => changeCart(product, i)}
+                                        <button className="x-small icon-only outlined" onClick={() => changeCart(i)}
                                                 data-testid="btn-quantity-add" >
                                             <i className="material-icons">add</i>
                                         </button>
                                         </div>
                                     :
-                                        <button className="x-small outlined" data-testid="btn-item-add" onClick={() => changeCart(product, i)}>
+                                        <button className="x-small outlined" data-testid="btn-item-add" onClick={() => changeCart(i)}>
                                             Add To Cart
                                         </button>
                                     }
