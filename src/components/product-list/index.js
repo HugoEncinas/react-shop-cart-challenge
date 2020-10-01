@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+
 import "./index.css";
 
 export default class ProductList extends Component {
@@ -7,6 +8,7 @@ export default class ProductList extends Component {
     }
 
     render() {
+        const {changeCart} = this.props
         return (
             <div className="layout-row wrap justify-content-center flex-70 app-product-list">
                 {this.props.products.map((product, i) => {
@@ -22,27 +24,28 @@ export default class ProductList extends Component {
                                     <p className="ma-0 mt-8 text-center">${product.price}</p>
                                 </div>
                                 <div className="card-actions justify-content-center pa-4">
-
-                                    <button className="x-small outlined" data-testid="btn-item-add">
-                                        Add To Cart
-                                    </button>
-
-                                    <div className="layout-row justify-content-between align-items-center">
-                                        <button className="x-small icon-only outlined"
+                                    {product.cartQuantity?
+                                        <div className="layout-row justify-content-between align-items-center">
+                                        <button className="x-small icon-only outlined" onClick={() => changeCart(product, i, true)}
                                                 data-testid="btn-quantity-subtract">
                                             <i className="material-icons">remove</i>
                                         </button>
 
                                         <input type="number"
-                                               disabled
-                                               className="cart-quantity" data-testid="cart-quantity"/>
+                                            value={product.cartQuantity}
+                                            disabled
+                                            className="cart-quantity" data-testid="cart-quantity"/>
 
-                                        <button className="x-small icon-only outlined"
-                                                data-testid="btn-quantity-add">
+                                        <button className="x-small icon-only outlined" onClick={() => changeCart(product, i)}
+                                                data-testid="btn-quantity-add" >
                                             <i className="material-icons">add</i>
                                         </button>
-                                    </div>
-
+                                        </div>
+                                    :
+                                        <button className="x-small outlined" data-testid="btn-item-add" onClick={() => changeCart(product, i)}>
+                                            Add To Cart
+                                        </button>
+                                    }
                                 </div>
                             </div>
                         </section>

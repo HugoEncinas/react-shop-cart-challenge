@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
+import Cart from "./components/cart";
+import ProductList from "./components/product-list";
+
 import './App.css';
 import 'h8k-components';
-import ProductList from "./components/product-list";
-import Cart from "./components/cart";
 
 const title = "HackerShop";
 
@@ -21,6 +23,35 @@ class App extends Component {
             },
             products
         }
+        this.changeCart = this.changeCart.bind(this)
+    }
+
+    changeCart(product, i, isRemove = false) {
+        console.log("addCart", product)
+        let products = [...this.state.products];
+        let cartItems = [...this.state.cart.items];
+        let newProduct = {...products[i]}
+        if (!isRemove) {
+            newProduct.cartQuantity = newProduct.cartQuantity+1;
+            
+        } else {
+            newProduct.cartQuantity = newProduct.cartQuantity-1;
+        }
+        let finditem = cartItems.find(item=>item.name === newProduct.name)
+        if (finditem) {
+            finditem.name = newProduct.name
+            finditem.quantity = newProduct.cartQuantity
+        } else {
+            cartItems = [...cartItems, {
+                item: newProduct.name,
+                quantity: newProduct.cartQuantity
+            }]
+        }
+        products[i] = newProduct
+        this.setState({products})
+        this.setState({cart:{
+            items: [...cartItems]
+        }})
     }
 
 
@@ -29,7 +60,7 @@ class App extends Component {
             <div>
                 <h8k-navbar header={title}></h8k-navbar>
                 <div className="layout-row shop-component">
-                    <ProductList products={this.state.products}/>
+                    <ProductList products={this.state.products} changeCart={this.changeCart}/>
                     <Cart cart={this.state.cart}/>
                 </div>
             </div>
